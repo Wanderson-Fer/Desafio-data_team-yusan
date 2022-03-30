@@ -44,9 +44,10 @@ print("Percentual de imposto: %", percentual_imposto)
 
 print("Calculando percentual de devolucoes")
 relacao_devolucoes = (df_vendas['devolucoes'].value_counts()).round(2)
+percentual_devolucao = ((relacao_devolucoes['Sim']/relacao_devolucoes.sum())*100).round(2)
+relacao_devolucoes['perc_sim'] = percentual_devolucao
 df_devolucoes = pd.DataFrame(relacao_devolucoes).reset_index()
 df_devolucoes = df_devolucoes.rename(columns={'index': 'escolha', 'devolucoes': 'quantidade'})
-percentual_devolucao = ((relacao_devolucoes['Sim']/relacao_devolucoes.sum())*100).round(2)
 print("Percentual de devolucoes: %", percentual_devolucao)
 
 
